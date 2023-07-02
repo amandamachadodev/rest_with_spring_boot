@@ -23,6 +23,75 @@ public class MathController {
 		Double result = convertToDouble(numberOne) + convertToDouble(numberTwo);
 		return result;
 	}
+	
+	@RequestMapping(value="/subtraction/{numberOne}/{numberTwo}", method=RequestMethod.GET)
+	public Double subtraction(
+			@PathVariable(value = "numberOne") String numberOne,
+			@PathVariable(value = "numberTwo") String numberTwo) 
+		throws Exception {
+		
+		if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsupportedMathOperationException("Please set a numeric value!");
+		}
+		
+		Double result = convertToDouble(numberOne) - convertToDouble(numberTwo);
+		return result;
+	}
+	
+	@RequestMapping(value="/multiplication/{numberOne}/{numberTwo}", method=RequestMethod.GET)
+	public Double multiplication(
+			@PathVariable(value = "numberOne") String numberOne,
+			@PathVariable(value = "numberTwo") String numberTwo) 
+		throws Exception {
+		
+		if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsupportedMathOperationException("Please set a numeric value!");
+		}
+		
+		Double result = convertToDouble(numberOne) * convertToDouble(numberTwo);
+		return result;
+	}
+	
+	@RequestMapping(value="/division/{numberOne}/{numberTwo}", method=RequestMethod.GET)
+	public Double division(
+			@PathVariable(value = "numberOne") String numberOne,
+			@PathVariable(value = "numberTwo") String numberTwo) 
+		throws Exception {
+		
+		if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsupportedMathOperationException("Please set a numeric value!");
+		}
+		
+		Double result = convertToDouble(numberOne) / convertToDouble(numberTwo);
+		return result;
+	}
+	
+	@RequestMapping(value="/mean/{numberOne}/{numberTwo}", method=RequestMethod.GET)
+	public Double mean(
+			@PathVariable(value = "numberOne") String numberOne,
+			@PathVariable(value = "numberTwo") String numberTwo) 
+		throws Exception {
+		
+		if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsupportedMathOperationException("Please set a numeric value!");
+		}
+		
+		Double result = (convertToDouble(numberOne) + convertToDouble(numberTwo)) / 2;
+		return result;
+	}
+	
+	@RequestMapping(value="/squareRoot/{number}", method=RequestMethod.GET)
+	public Double squareRoot(
+			@PathVariable(value = "number") String number)
+		throws Exception {
+		
+		if (!isNumeric(number)) {
+			throw new UnsupportedMathOperationException("Please set a numeric value!");
+		}
+		
+		Double result = Math.sqrt(convertToDouble(number));
+		return result;
+	}
 
 	public static Double convertToDouble(String strNumber) {
 		if (strNumber == null) return 0D;
